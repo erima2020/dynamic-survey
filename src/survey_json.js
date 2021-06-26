@@ -5,20 +5,12 @@ export var json = {
     {
       elements: [
         {
-          type: "myquestion",
-          name: "cq1",
-          text: "Some Text",
-        },
-        {
-          type: 'videocomponent',
-          name: 'Please upload your video',
-          text: 'HAHA'
-        },
-        {
-          type: "myquestion",
-          name: "q1",
-          placeHolder: "put some text here",
-          buttonText: "Custom button text",
+          type: "ziggeodescribeimage",
+          isRequired: true,
+          name: "Please upload your video",
+          text: "Please describe the picture",
+          url: "https://picsum.photos/200/300",
+          API_KEY: process.env.REACT_APP_ZIGGEO_API_KEY,
         },
         {
           type: "tagbox",

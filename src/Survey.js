@@ -23,8 +23,7 @@ import { json } from "./survey_json.js";
 window["$"] = window["jQuery"] = $;
 //require("icheck");
 
-export { MyQuestion } from "./MyQuestion";
-export { VideoComponent } from "./VideoComponent";
+export { DescribeImage } from "./CustomComponents/DescribeImage";
 
 Survey.StylesManager.applyTheme("default");
 
