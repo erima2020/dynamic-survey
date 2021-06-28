@@ -46,9 +46,31 @@ function onValueChanged() {}
 export function SurveyPage() {
   const model = new Survey.Model(json);
   const [startDate] = useState(new Date());
-  const [ip, setIP] = useState(null)
+  const [ip, setIP] = useState(null);
 
   const onComplete = (result) => {
+    fetch("/upload", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: result.data,
+        ip,
+        timestamp: {
+          startDate,
+          endDate: new Date(),
+        },
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        setIP(res.ip);
+      })
+      .catch((err) => console.log(err));
     console.log({
       data: result.data,
       ip,
@@ -65,7 +87,7 @@ export function SurveyPage() {
         return response.json();
       })
       .then((res) => {
-        setIP(res.ip)
+        setIP(res.ip);
       })
       .catch((err) => console.log(err));
   }, []);
