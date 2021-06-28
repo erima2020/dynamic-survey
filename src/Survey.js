@@ -24,6 +24,7 @@ window["$"] = window["jQuery"] = $;
 //require("icheck");
 
 export { DescribeImage } from "./CustomComponents/DescribeImage";
+export { TextWithButton } from "./CustomComponents/TextWithButton";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -41,12 +42,14 @@ widgets.ckeditor(Survey);
 widgets.autocomplete(Survey, $);
 widgets.bootstrapslider(Survey);
 
-function onValueChanged(result) {
-    console.log("value changed!");
+function onValueChanged() {
 }
 
 function onComplete(result) {
-    console.log("Complete! " + result);
+    console.log("Complete! " + result, JSON.stringify(result.data));
+    console.log({
+        data: result.data
+    })
 }
 
 

@@ -29,26 +29,23 @@ export class DescribeImage extends Survey.SurveyElementBase {
   get question() {
     return this.props.question;
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.recorder) {
-      this.state.recorder.on(
-        "onPlaying",
-        function (rec) {
-          console.log({ rec });
-        },
-        this.state.recorder
-      );
-      this.state.recorder.get("attribute_name");
-    }
-  }
-
-  // Embedding (player/recorder instance) will be the first argument
-  handleRecorderRecording = (embedding) => {
-    console.log("Recorder onRecording");
+  
+  recorderUploaded = (ref) => {
+    const { stream_data: {token, video_token, type} } = ref;
+    this.question.value = {
+      token,
+      video_token,
+      type
+    };
   };
 
-  handleRecorderUploading = (embedding) => {
-    console.log("Recorder uploading");
+  recorderVerified = (ref) => {
+    const { stream_data: {token, video_token, type} } = ref;
+    this.question.value = {
+      token,
+      video_token,
+      type
+    };
   };
 
   setRecorder = (ref) => {
@@ -70,9 +67,10 @@ export class DescribeImage extends Survey.SurveyElementBase {
           apiKey={API_KEY}
           height={180}
           width={320}
-          onRecording={this.handleRecorderRecording}
-          onUploading={this.handleRecorderUploading}
           onRef={(ref) => this.setRecorder(ref)}
+          allowupload={false}
+          onVerified={this.recorderVerified}
+          onUploaded={this.recorderUploaded}
         />
       </div>
     );

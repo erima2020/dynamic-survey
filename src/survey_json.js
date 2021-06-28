@@ -4,11 +4,17 @@ export var json = {
   pages: [
     {
       elements: [
+        // {
+        //   type: "textwithbutton",
+        //   isRequired: true,
+        //   name: "Please upload your text",
+        //   text: "Please describe the your self",
+        //   url: "https://picsum.photos/200/300",
+        // },
         {
           type: "ziggeodescribeimage",
-          isRequired: true,
-          name: "Please upload your video",
-          text: "Please describe the picture",
+          name: "picture-describe",
+          title: "Please describe the picture",
           url: "https://picsum.photos/200/300",
           API_KEY: process.env.REACT_APP_ZIGGEO_API_KEY,
         },
