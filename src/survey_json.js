@@ -13,6 +13,7 @@ export var json = {
         // },
         {
           type: "ziggeodescribeimage",
+          isRequired: true,
           name: "picture-describe",
           title: "Please describe the picture",
           url: "https://picsum.photos/200/300",

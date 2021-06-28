@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Survey from "survey-react";
 import * as widgets from "surveyjs-widgets";
 import "survey-react/survey.css";
-
 import "jquery-ui/themes/base/all.css";
 import "nouislider/distribute/nouislider.css";
 import "select2/dist/css/select2.css";
@@ -42,28 +41,43 @@ widgets.ckeditor(Survey);
 widgets.autocomplete(Survey, $);
 widgets.bootstrapslider(Survey);
 
-function onValueChanged() {
-}
-
-function onComplete(result) {
-    console.log("Complete! " + result, JSON.stringify(result.data));
-    console.log({
-        data: result.data
-    })
-}
-
+function onValueChanged() {}
 
 export function SurveyPage() {
-    var model = new Survey.Model(json);
-    return (
+  const model = new Survey.Model(json);
+  const [startDate] = useState(new Date());
+  const [ip, setIP] = useState(null)
+
+  const onComplete = (result) => {
+    console.log({
+      data: result.data,
+      ip,
+      timestamp: {
+        startDate,
+        endDate: new Date(),
+      },
+    });
+  };
+
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((res) => {
+        setIP(res.ip)
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
     <div className="container">
-        <h2>USING: SurveyJS Library - a sample survey below</h2>
-        <Survey.Survey
-            model={model}
-            onComplete={onComplete}
-            onValueChanged={onValueChanged}
-          />
+      <h2>USING: SurveyJS Library - a sample survey below</h2>
+      <Survey.Survey
+        model={model}
+        onComplete={onComplete}
+        onValueChanged={onValueChanged}
+      />
     </div>
-    );
-  }
-  
+  );
+}
