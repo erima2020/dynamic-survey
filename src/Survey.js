@@ -16,11 +16,9 @@ import "jquery-bar-rating";
 
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
-import { json } from "./survey_json.js";
+import { json } from "./inputJSON.js";
 
-//import "icheck/skins/square/blue.css";
 window["$"] = window["jQuery"] = $;
-//require("icheck");
 
 export { DescribeImage } from "./CustomComponents/DescribeImage";
 export { TextWithButton } from "./CustomComponents/TextWithButton";
