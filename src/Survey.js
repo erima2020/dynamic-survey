@@ -17,6 +17,7 @@ import "jquery-bar-rating";
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
 import { json } from "./inputJSON.js";
+import { createARandomArray } from "./Utils/randomInputs.js";
 
 window["$"] = window["jQuery"] = $;
 
@@ -42,7 +43,8 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-  const model = new Survey.Model(json);
+  const additionalCheckJSON = createARandomArray(json);
+  const model = new Survey.Model(additionalCheckJSON);
   const [startDate] = useState(new Date());
   const [ip, setIP] = useState(null);
 

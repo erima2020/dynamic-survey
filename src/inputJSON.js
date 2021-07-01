@@ -1,62 +1,211 @@
-export var json = {
-  title: "Product Feedback Survey Example",
+// question with name Age: is there a way to indicate to check the answer is integer ?
+// with names ZiggeoQ1 and ZiggeoQ2: how can we distinguish between these answers on Ziggeo?
+
+import { createARandomArray } from "./Utils/randomInputs";
+
+const newList = createARandomArray({
+  pages: [
+    { elements:  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
+  ],
+  // pages: [0, 1, 2, 3, 4, 5, 6],
+  random: [{
+    for: [1, 7, 3, 8], soft: false
+  }],
+})
+console.log({
+  newList
+})
+
+export const json = {
+  title: "Test input survey",
   showProgressBar: "top",
   pages: [
     {
       elements: [
-        // {
-        //   type: "textwithbutton",
-        //   isRequired: true,
-        //   name: "Please upload your text",
-        //   text: "Please describe the your self",
-        //   url: "https://picsum.photos/200/300",
-        // },
         {
-          type: "matrix",
-          name: "Quality",
-          title: "Please indicate if you agree or disagree with the following statements",
-          columns: [
-              {
-                  value: 1,
-                  text: "Strongly Disagree"
-              }, {
-                  value: 2,
-                  text: "Disagree"
-              }, {
-                  value: 3,
-                  text: "Neutral"
-              }, {
-                  value: 4,
-                  text: "Agree"
-              }, {
-                  value: 5,
-                  text: "Strongly Agree"
-              }
-          ],
-          rows: [
-              {
-                  value: "affordable",
-                  text: "Product is affordable"
-              }, {
-                  value: "does what it claims",
-                  text: "Product does what it claims"
-              }, {
-                  value: "better then others",
-                  text: "Product is better than other products on the market"
-              }, {
-                  value: "easy to use",
-                  text: "Product is easy to use"
-              }
-          ]
-      },
+          type: "text",
+          isRequired: true,
+          name: "Age",
+          text: "How old are you?",
+          title: "Please enter your age",
+          inputType: "number",
+          validators: [{ type: "numeric", minValue: 21, maxValue: 120 }],
+        },
+        {
+          type: "radiogroup",
+          name: "Gender",
+          title: "Are you a man or a woman",
+          isRequired: false,
+          colCount: 0,
+          choices: ["Man", "Woman"],
+        },
         {
           type: "ziggeodescribeimage",
-          // isRequired: true,
-          name: "picture-describe",
-          title: "Please describe the picture",
+          isRequired: true,
+          name: "ZiggeoQ1",
+          title:
+            "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
           url: "https://picsum.photos/200/300",
           API_KEY: process.env.REACT_APP_ZIGGEO_API_KEY,
         },
+        {
+          type: "matrix",
+          name: "Feelings",
+          isRequired: true,
+          title:
+            "Please describe how you are feeling right now using the scale below",
+          columns: [
+            {
+              value: 1,
+              text: "Strongly Disagree",
+            },
+            {
+              value: 2,
+              text: "Disagree",
+            },
+            {
+              value: 3,
+              text: "Neither agree nor disagree",
+            },
+            {
+              value: 4,
+              text: "Agree",
+            },
+            {
+              value: 5,
+              text: "Strongly Agree",
+            },
+          ],
+          rows: [
+            {
+              value: "Happy",
+              text: "Happy",
+            },
+            {
+              value: "Sad",
+              text: "Sad",
+            },
+            {
+              value: "Afraid",
+              text: "Afraid",
+            },
+            {
+              value: "Angry",
+              text: "Angry",
+            },
+          ],
+        },
+        {
+          type: "matrix",
+          name: "Bla",
+          title: "Bla bla",
+          columns: [
+            {
+              value: 1,
+              text: "1",
+            },
+            {
+              value: 2,
+              text: "2",
+            },
+            {
+              value: 3,
+              text: "3",
+            },
+          ],
+          rows: [
+            {
+              value: "Bla1",
+              text: "Bla bla 1",
+            },
+            {
+              value: "Bla2",
+              text: "Bla bla 2",
+            },
+            {
+              value: "Bla3",
+              text: "Bla bla 3",
+            },
+            {
+              value: "Bla4",
+              text: "Bla bla 4",
+            },
+            {
+              value: "Bla5",
+              text: "Bla bla 5",
+            },
+            {
+              value: "Bla6",
+              text: "Bla bla 6",
+            },
+            {
+              value: "Bla7",
+              text: "Bla bla 7",
+            },
+            {
+              value: "Bla8",
+              text: "Bla bla 8",
+            },
+            {
+              value: "Bla9",
+              text: "Bla bla 9",
+            },
+            {
+              value: "Bla10",
+              text: "Bla bla 10",
+            },
+            {
+              value: "Bla11",
+              text: "Bla bla 11",
+            },
+            {
+              value: "Bla12",
+              text: "Bla bla 12",
+            },
+            {
+              value: "Bla 13",
+              text: "Bla bla 13",
+            },
+            {
+              value: "Bla 14",
+              text: "Bla bla 14",
+            },
+            {
+              value: "Bla15",
+              text: "Bla bla 15",
+            },
+            {
+              value: "Bla16",
+              text: "Bla bla 16",
+            },
+            {
+              value: "Bla17",
+              text: "Bla bla 17",
+            },
+            {
+              value: "Bla18",
+              text: "Bla bla 18",
+            },
+            {
+              value: "Bla19",
+              text: "Bla bla 19",
+            },
+            {
+              value: "Bla20",
+              text: "Bla bla 20",
+            },
+          ],
+        },
+        {
+          type: "ziggeodescribeimage",
+          isRequired: true,
+          name: "ZiggeoQ2",
+          title:
+            "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
+          url: "https://picsum.photos/200/300",
+          API_KEY: process.env.REACT_APP_ZIGGEO_API_KEY,
+        },
+
         {
           type: "tagbox",
           name: "position-tags",
@@ -182,7 +331,7 @@ export var json = {
       ],
     },
     {
-      questions: [
+      elements: [
         {
           type: "signaturepad",
           width: "500px",
@@ -258,7 +407,7 @@ export var json = {
       ],
     },
     {
-      questions: [
+      elements: [
         {
           type: "radiogroup",
           name: "price to competitors",
@@ -308,4 +457,7 @@ export var json = {
       ],
     },
   ],
+  random: [
+    {for: [1, 2, 4, 5], soft: false}
+  ]
 };
