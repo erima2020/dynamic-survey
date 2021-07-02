@@ -17,12 +17,12 @@ import "jquery-bar-rating";
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
 import { json } from "./inputJSON.js";
-import { createARandomArray } from "./Utils/randomInputs.js";
+import { combineInput } from "./CustomizedSurvey/Utils/combineInput.js";
 
 window["$"] = window["jQuery"] = $;
 
-export { DescribeImage } from "./CustomComponents/DescribeImage";
-export { TextWithButton } from "./CustomComponents/TextWithButton";
+export { DescribeImage } from "./CustomizedSurvey/Components/DescribeImage";
+export { TextWithButton } from "./CustomizedSurvey/Components/TextWithButton";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -43,42 +43,32 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-  const additionalCheckJSON = createARandomArray(json);
+  const additionalCheckJSON = combineInput(json);
   const model = new Survey.Model(additionalCheckJSON);
   const [startDate] = useState(new Date());
   const [ip, setIP] = useState(null);
 
-  const onComplete = (result) => {
+  const saveData = (data) => {
+    console.log(data)
     fetch("/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        data: result.data,
+      body: data,
+    });
+  }
+
+  const onComplete = (result) => {
+    saveData({
+      data: result.data,
         ip,
         timestamp: {
           startDate,
           endDate: new Date(),
         },
-      }),
     })
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        setIP(res.ip);
-      })
-      .catch((err) => console.log(err));
-    console.log({
-      data: result.data,
-      ip,
-      timestamp: {
-        startDate,
-        endDate: new Date(),
-      },
-    });
   };
 
   useEffect(() => {

@@ -1,16 +1,21 @@
 // question with name Age: is there a way to indicate to check the answer is integer ?
 // with names ZiggeoQ1 and ZiggeoQ2: how can we distinguish between these answers on Ziggeo?
 
-import { createARandomArray } from "./Utils/randomInputs";
+import { combineInput } from "./CustomizedSurvey/Utils/combineInput";
 
-const newList = createARandomArray({
+const newList = combineInput({
   pages: [
-    { elements:  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
+    { elements:  [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
+    { elements:  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] },
+    { elements:  [31] },
+    { elements:  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
   ],
-  // pages: [0, 1, 2, 3, 4, 5, 6],
-  random: [{
-    for: [1, 7, 3, 8], soft: false
-  }],
+  random: [
+    { for: [1, 7, 3, 8, 9]},
+    { for: [1, 7, 3, 8] },
+    { for: []},
+    { for: [2, 4, 6, 8]},
+  ],
 })
 console.log({
   newList
@@ -458,6 +463,6 @@ export const json = {
     },
   ],
   random: [
-    {for: [1, 2, 4, 5], soft: false}
+    {for: [1, 2, 4, 5]}
   ]
 };

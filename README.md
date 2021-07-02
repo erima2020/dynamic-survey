@@ -37,6 +37,58 @@ More than that, this boilerplate contains ziggeo as well which you need to pass 
 }
 ```
 
+### Random series from picking
+Note: If you want to use all random questions, please go ahead with the SurveyJS random order
+If you want to only a set of questions to be randomized then you can pass one more keyword in your JSON data
+`random: [
+    { for: [1, 2, 4, 5] }
+  ]
+`
+here random will have one or more objects based on the pages
+You need to pass the index of which question to wanted to be randomized and that will be with the other items mentioned in the same array
+
+## How to integrate 
+### New Application
+If you want to build a new app, you can use this as your baseline and create everything on the top of it. Since this project don't have much of to offer except survey so you should note the below point for existing projects
+
+### Existing Application
+To integrate this application into yours is to copy and paste the folder `CustomizedSurvey` into your anywhere in your project and follow the snippet
+
+```
+import { combineInput } from ".<your-project-root>/CustomizedSurvey/Utils/combineInput.js";
+
+
+const additionalCheckJSON = combineInput(json);
+const model = new Survey.Model(additionalCheckJSON);
+
+// in your render method
+<Survey.Survey
+    model={model}
+    onComplete={onComplete}
+    onValueChanged={onValueChanged}
+/>
+  
+```
+Install the dependecies in your app. Change it according to your current behaviour
+```
+"react-ziggeo": "latest",
+"survey-analytics": "latest",
+"survey-creator": "latest",
+"survey-pdf": "latest",
+"survey-react": "latest",
+"surveyjs-widgets": "latest",
+"xlsx": "latest"
+```
+
+To add a new component you can add in the survey which you wanted to add as follow
+```
+export { DescribeImage } from ".<your-project-root>/CustomizedSurvey/Components/DescribeImage";
+export { TextWithButton } from ".<your-project-root>/CustomizedSurvey/Components/TextWithButton";
+```
+
+this way you can use this repo in your existing app
+
+
 ## Environment Variables
 - REACT_APP_ZIGGEO_API_KEY - A secret app key for the ziggeo
 - DATABASE_URL - A MongoDB url where you want to store the information
