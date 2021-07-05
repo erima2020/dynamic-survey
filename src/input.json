@@ -30,6 +30,14 @@
           "API_KEY": "c9b1eaeece40d132e898c528fefc0e5b"
         },
         {
+          "type": "ziggeodescribeimageonlyaudio",
+          "name": "ZiggeoQ3",
+          "title":
+            "First click on Record Audio, Autorize access to microphone, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
+          "url": "https://picsum.photos/200/300",
+          "API_KEY": "c9b1eaeece40d132e898c528fefc0e5b"
+        },
+        {
           "type": "matrix",
           "name": "Feelings",
           "isRequired": true,
@@ -438,7 +446,7 @@
     }
   ],
   "random": [
-    { "for": [1, 7, 3, 8, 9]},
+    { "for": [1, 7, 8, 9]},
     { "for": [1,3] }
   ]
 }

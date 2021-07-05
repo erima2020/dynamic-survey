@@ -1,0 +1,93 @@
+import React from "react";
+import * as Survey from "survey-react";
+import { ZiggeoRecorder } from "react-ziggeo";
+
+const TYPE_NAME = "ziggeodescribeimageonlyaudio";
+
+export class DescribeImageOnlyAudioModel extends Survey.Question {
+  getType() {
+    return TYPE_NAME;
+  }
+  get text() {
+    return this.getPropertyValue("text", "");
+  }
+  set text(newValue) {
+    this.setPropertyValue("text", newValue);
+  }
+  get url() {
+    return this.getPropertyValue("url", "");
+  }
+  set url(newValue) {
+    this.setPropertyValue("url", newValue);
+  }
+}
+
+export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
+  state = {
+    recorder: null,
+  };
+  get question() {
+    return this.props.question;
+  }
+  
+  recorderUploaded = (ref) => {
+    const { stream_data: {token, video_token, type} } = ref;
+    this.question.value = {
+      token,
+      video_token,
+      type
+    };
+  };
+
+  recorderVerified = (ref) => {
+    const { stream_data: {token, video_token, type} } = ref;
+    this.question.value = {
+      token,
+      video_token,
+      type
+    };
+  };
+
+  setRecorder = (ref) => {
+    this.setState({
+      recorder: ref,
+    });
+  };
+
+  render() {
+    if (!this.question) return null;
+    const { text, url, API_KEY, cssClasses } = this.question;
+    return (
+      <div className={cssClasses.root}>
+        <div>
+          <b>{text}</b>
+        </div>
+        <img src={url} alt={text} />
+        <ZiggeoRecorder
+          ziggeo-onlyaudio
+          onlyaudio={true}
+          apiKey={API_KEY}
+          height={180}
+          width={320}
+          onRef={(ref) => this.setRecorder(ref)}
+          allowupload={false}
+          onVerified={this.recorderVerified}
+          onUploaded={this.recorderUploaded}
+        />
+      </div>
+    );
+  }
+}
+
+Survey.Serializer.addClass(
+  TYPE_NAME,
+  [{ name: "text" }, { name: "url" }, { name: "API_KEY" }],
+  function () {
+    return new DescribeImageOnlyAudioModel("");
+  },
+  "question"
+);
+
+Survey.ReactQuestionFactory.Instance.registerQuestion(TYPE_NAME, (props) => {
+  return React.createElement(DescribeImageOnlyAudio, props);
+});

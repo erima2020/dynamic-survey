@@ -22,6 +22,7 @@ import { combineInput } from "./CustomizedSurvey/Utils/combineInput.js";
 
 window["$"] = window["jQuery"] = $;
 
+export { DescribeImageOnlyAudio } from "./CustomizedSurvey/Components/DescribeImageAudio";
 export { DescribeImage } from "./CustomizedSurvey/Components/DescribeImage";
 export { TextWithButton } from "./CustomizedSurvey/Components/TextWithButton";
 
