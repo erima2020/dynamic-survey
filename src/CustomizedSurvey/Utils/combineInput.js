@@ -19,7 +19,6 @@ const perPage = (page, random) => {
       if (random.for && random.for.some((e1) => e1 < page.elements.length)) {
         return {
           validator: true,
-          returner: page,
         };
       } else {
         return {
