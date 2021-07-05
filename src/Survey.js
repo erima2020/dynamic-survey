@@ -17,6 +17,7 @@ import "jquery-bar-rating";
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
 import { json } from "./inputJSON.js";
+import * as inputObj from "./input.json";
 import { combineInput } from "./CustomizedSurvey/Utils/combineInput.js";
 
 window["$"] = window["jQuery"] = $;
@@ -43,13 +44,15 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-  const additionalCheckJSON = combineInput(json);
+  const additionalCheckJSON = combineInput(inputObj);
   const model = new Survey.Model(additionalCheckJSON);
   const [startDate] = useState(new Date());
   const [ip, setIP] = useState(null);
+  const [output, setOutput] = useState();
 
   const saveData = (data) => {
     console.log(data)
+    setOutput(data)
     fetch("/upload", {
       method: "POST",
       headers: {
@@ -85,6 +88,9 @@ export function SurveyPage() {
   return (
     <div className="container">
       <h2>USING: SurveyJS Library - a sample survey below</h2>
+      {
+        output && <div><pre>{JSON.stringify(output, null, 2) }</pre></div>
+      }
       <Survey.Survey
         model={model}
         onComplete={onComplete}
