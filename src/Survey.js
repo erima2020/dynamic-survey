@@ -48,11 +48,8 @@ export function SurveyPage() {
   const model = new Survey.Model(additionalCheckJSON);
   const [startDate] = useState(new Date());
   const [ip, setIP] = useState(null);
-  const [output, setOutput] = useState();
 
   const saveData = (data) => {
-    console.log(data)
-    setOutput(data)
     fetch("/upload", {
       method: "POST",
       headers: {
@@ -88,9 +85,6 @@ export function SurveyPage() {
   return (
     <div className="container">
       <h2>USING: SurveyJS Library - a sample survey below</h2>
-      {
-        output && <div><pre>{JSON.stringify(output, null, 2) }</pre></div>
-      }
       <Survey.Survey
         model={model}
         onComplete={onComplete}

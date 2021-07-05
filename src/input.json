@@ -23,7 +23,6 @@
         },
         {
           "type": "ziggeodescribeimage",
-          "isRequired": true,
           "name": "ZiggeoQ1",
           "title":
             "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
@@ -180,7 +179,6 @@
         },
         {
           "type": "ziggeodescribeimage",
-          "isRequired": true,
           "name": "ZiggeoQ2",
           "title":
             "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
