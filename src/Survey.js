@@ -56,7 +56,7 @@ export function SurveyPage() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(data),
     });
   }
 
