@@ -20,6 +20,12 @@ export class DescribeImageModel extends Survey.Question {
   set url(newValue) {
     this.setPropertyValue("url", newValue);
   }
+  get API_KEY() {
+    return this.getPropertyValue("API_KEY", "");
+  }
+  set API_KEY(newValue) {
+    this.setPropertyValue("API_KEY", newValue);
+  }
 }
 
 export class DescribeImage extends Survey.SurveyElementBase {
