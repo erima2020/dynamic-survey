@@ -70,7 +70,7 @@ export class DescribeImage extends Survey.SurveyElementBase {
         </div>
         <img src={url} alt={text} />
         <ZiggeoRecorder
-          apiKey={API_KEY}
+          application={API_KEY}
           height={180}
           width={320}
           onRef={(ref) => this.setRecorder(ref)}
