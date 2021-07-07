@@ -17,7 +17,7 @@
           "type": "radiogroup",
           "name": "Gender",
           "title": "Are you a man or a woman",
-          "isRequired": false,
+          "isRequired": true,
           "colCount": 0,
           "choices": ["Man", "Woman"]
         },
@@ -27,6 +27,7 @@
           "name": "Feelings",
           "isRequired": true,
           "minRowCount": 4,
+          "maxRowCount": 4,
           "title":
             "Please describe how you are feeling right now using the scale below",
           "columns": [
@@ -75,7 +76,9 @@
           "type": "matrix",
           "name": "Bla",
           "title": "Bla bla",
+          "isRequired": true,
           "minRowCount": 20,
+          "maxRowCount": 20,
           "columns": [
             {
               "value": 1,
