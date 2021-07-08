@@ -8,6 +8,12 @@ export class DescribeImageModel extends Survey.Question {
   getType() {
     return TYPE_NAME;
   }
+  get Width() {
+    return this.getPropertyValue("Width", "");
+  }
+  set Width(newValue) {
+    this.setPropertyValue("Width", newValue);
+  }
   get text() {
     return this.getPropertyValue("text", "");
   }
@@ -68,7 +74,7 @@ export class DescribeImage extends Survey.SurveyElementBase {
         <div>
           <b>{text}</b>
         </div>
-        <img src={url} alt={text} width={640}/>
+        <img src={url} alt={text} width={Width}/>
         <ZiggeoRecorder
           application={API_KEY}
           height={180}
