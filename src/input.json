@@ -68,18 +68,22 @@
           "rows": [
             {
               "value": "Happy",
+              "isRequired": true,
               "text": "Happy"
             },
             {
               "value": "Sad",
+              "isRequired": true,
               "text": "Sad"
             },
             {
               "value": "Afraid",
+              "isRequired": true,
               "text": "Afraid"
             },
             {
               "value": "Angry",
+              "isRequired": true,
               "text": "Angry"
             }
           ]
