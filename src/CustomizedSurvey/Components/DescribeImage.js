@@ -68,7 +68,7 @@ export class DescribeImage extends Survey.SurveyElementBase {
         <div>
           <b>{text}</b>
         </div>
-        <img src={url} alt={text} />
+        <img src={url} alt={text} width={640}/>
         <ZiggeoRecorder
           application={API_KEY}
           height={180}
