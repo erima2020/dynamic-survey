@@ -8,12 +8,6 @@ export class DescribeImageModel extends Survey.Question {
   getType() {
     return TYPE_NAME;
   }
-  get Width() {
-    return this.getPropertyValue("Width", "");
-  }
-  set Width(newValue) {
-    this.setPropertyValue("Width", newValue);
-  }
   get text() {
     return this.getPropertyValue("text", "");
   }
