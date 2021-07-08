@@ -55,18 +55,22 @@
           "rows": [
             {
               "value": "Happy",
+              "isRequired": true,
               "text": "Happy"
             },
             {
               "value": "Sad",
+              "isRequired": true,
               "text": "Sad"
             },
             {
               "value": "Afraid",
+              "isRequired": true,
               "text": "Afraid"
             },
             {
               "value": "Angry",
+              "isRequired": true,
               "text": "Angry"
             }
           ]
@@ -82,96 +86,119 @@
           "columns": [
             {
               "value": 1,
+              "isRequired": true,
               "text": "1"
             },
             {
               "value": 2,
+              "isRequired": true,
               "text": "2"
             },
             {
               "value": 3,
+              "isRequired": true,
               "text": "3"
             }
           ],
           "rows": [
             {
               "value": "Bla1",
+              "isRequired": true,
               "text": "Bla bla 1"
             },
             {
               "value": "Bla2",
+              "isRequired": true,
               "text": "Bla bla 2"
             },
             {
               "value": "Bla3",
+              "isRequired": true,
               "text": "Bla bla 3"
             },
             {
               "value": "Bla4",
+              "isRequired": true,
               "text": "Bla bla 4"
             },
             {
               "value": "Bla5",
+              "isRequired": true,
               "text": "Bla bla 5"
             },
             {
               "value": "Bla6",
+              "isRequired": true,
               "text": "Bla bla 6"
             },
             {
               "value": "Bla7",
+              "isRequired": true,
               "text": "Bla bla 7"
             },
             {
               "value": "Bla8",
+              "isRequired": true,
               "text": "Bla bla 8"
             },
             {
               "value": "Bla9",
+              "isRequired": true,
               "text": "Bla bla 9"
             },
             {
               "value": "Bla10",
+              "isRequired": true,
               "text": "Bla bla 10"
             },
             {
               "value": "Bla11",
+              "isRequired": true,
               "text": "Bla bla 11"
             },
             {
               "value": "Bla12",
+              "isRequired": true,
               "text": "Bla bla 12"
             },
             {
               "value": "Bla 13",
+              "isRequired": true,
               "text": "Bla bla 13"
             },
             {
               "value": "Bla 14",
+              "isRequired": true,
               "text": "Bla bla 14"
             },
             {
               "value": "Bla15",
+              "isRequired": true,
               "text": "Bla bla 15"
             },
             {
               "value": "Bla16",
+              "isRequired": true,
               "text": "Bla bla 16"
             },
             {
               "value": "Bla17",
+              "isRequired": true,
               "text": "Bla bla 17"
             },
             {
               "value": "Bla18",
+              "isRequired": true,
               "text": "Bla bla 18"
             },
             {
               "value": "Bla19",
+              "isRequired": true,
               "text": "Bla bla 19"
             },
             {
               "value": "Bla20",
+              "isRequired": true,
               "text": "Bla bla 20"
             }
           ]
