@@ -186,7 +186,8 @@
           "name": "ZiggeoQ1",
           "title":
             "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
-          "url": "https://picsum.photos/200/300",
+          //"url": "https://picsum.photos/200/300",
+          "url": "https://textective.com/test1.jpg",
           "API_KEY": "2d6cddc6d40c67375b6d469a875c10e9"
         }
 
@@ -200,7 +201,8 @@
           "name": "ZiggeoQ2",
           "title":
             "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
-          "url": "https://picsum.photos/200/300",
+          //"url": "https://picsum.photos/200/300",
+          "url": "https://textective.com/test1.jpg",
           "API_KEY": "5f4da45b9831d3fa637ffc5286567b38"
              }
 
