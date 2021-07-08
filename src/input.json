@@ -26,6 +26,7 @@
           "type": "matrix",
           "name": "Feelings",
           "isRequired": true,
+          "isAllRowRequired": true,
           "title":
             "Please describe how you are feeling right now using the scale below",
           "columns": [
