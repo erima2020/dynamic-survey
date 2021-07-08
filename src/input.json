@@ -201,6 +201,7 @@
           "title":
             "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
           "url": "https://textective.com/test1.jpg",
+          "Width": "72",
           "API_KEY": "5f4da45b9831d3fa637ffc5286567b38"
              }
 
