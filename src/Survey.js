@@ -24,7 +24,7 @@ window["$"] = window["jQuery"] = $;
 
 export { DescribeImageOnlyAudio } from "./CustomizedSurvey/Components/DescribeImageAudio";
 export { DescribeImage } from "./CustomizedSurvey/Components/DescribeImage";
-export { TextWithButton } from "./CustomizedSurvey/Components/TextWithButton";
+export { RandomId } from "./CustomizedSurvey/Components/RandomId";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -78,6 +78,7 @@ export function SurveyPage() {
         return response.json();
       })
       .then((res) => {
+        // check if ip exist or not
         setIP(res.ip);
       })
       .catch((err) => console.log(err));
