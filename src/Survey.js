@@ -64,6 +64,7 @@ export function SurveyPage() {
   const onComplete = (result) => {
     saveData({
       data: result.data,
+      questionaire: additionalCheckJSON,
         ip,
         timestamp: {
           startDate,
