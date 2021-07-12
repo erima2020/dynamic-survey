@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as Survey from "survey-react";
 import * as widgets from "surveyjs-widgets";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "survey-react/survey.css";
 import "jquery-ui/themes/base/all.css";
 import "nouislider/distribute/nouislider.css";
@@ -45,54 +47,94 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-  const additionalCheckJSON = combineInput(inputObj);
-  const model = new Survey.Model(additionalCheckJSON);
-  const [startDate] = useState(new Date());
-  const [ip, setIP] = useState(null);
+    const additionalCheckJSON = combineInput(inputObj);
+    const model = new Survey.Model(additionalCheckJSON);
+    const [startDate] = useState(new Date());
+    const [ip, setIP] = useState(null);
+    const [loader, setLoader] = useState(true);
+    const [success, setSuccess] = useState(false);
+    const [data, setData] = useState(false);
 
-  const saveData = (data) => {
-    fetch("/upload", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-  }
+    const saveData = (data) => {
+        fetch("http://192.168.29.79:3001/upload", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+    };
 
-  const onComplete = (result) => {
-    saveData({
-      data: result.data,
-      questionaire: additionalCheckJSON,
-        ip,
-        timestamp: {
-          startDate,
-          endDate: new Date(),
-        },
-    })
-  };
+    const onComplete = (result) => {
+        console.log(result.data);
+        saveData({
+            data: result.data,
+            questionaire: additionalCheckJSON,
+            timestamp: {
+                startDate,
+                endDate: new Date(),
+            },
+            surveyId: result.data.surveyId,
+        });
+    };
 
-  useEffect(() => {
-    fetch("https://api.ipify.org?format=json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        // check if ip exist or not
-        setIP(res.ip);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    useEffect(async () => {
+        // fetch("https://api.ipify.org?format=json")
+        //     .then((response) => {
+        //         return response.json();
+        //     })
+        //     .then((res) => {
+        //         // check if ip exist or not
+        //         setIP(res.ip);
+        //     })
+        //     .catch((err) => console.log(err));
+        try {
+            let response = await fetch("http://192.168.29.79:3001/ipvalidate");
+            response = await response.json();
+            setLoader(false)
+            setData(response.data);
+            setSuccess(true);
+        } catch (error) {
+            setSuccess(false);
+        }
+    }, []);
 
-  return (
-    <div className="container">
-      <h2>USING: SurveyJS Library - a sample survey below</h2>
-      <Survey.Survey
-        model={model}
-        onComplete={onComplete}
-        onValueChanged={onValueChanged}
-      />
-    </div>
-  );
+    return (
+        <div className="container">
+            <h2>USING: SurveyJS Library - a sample survey below</h2>
+            {!loader ? (
+                success ? (
+                    !data ? (
+                        <Survey.Survey
+                            model={model}
+                            onComplete={onComplete}
+                            onValueChanged={onValueChanged}
+                        />
+                    ) : (
+                        <h2>Survey already submitted</h2>
+                    )
+                ) : (
+                    <h2>Some Error Occured</h2>
+                )
+            ) : (
+                <div
+                    style={{
+                        display: "flex",
+                        flex: 1,
+                        height: "100vh",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Loader
+                        type="Oval"
+                        color="#EE1C25"
+                        height={39}
+                        width={80}
+                    />
+                </div>
+            )}
+        </div>
+    );
 }
