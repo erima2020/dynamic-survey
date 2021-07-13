@@ -1,5 +1,5 @@
 {
-  "title": "My new survey",
+  "title": "Study coding",
   "showProgressBar": "top",
   "pages": [
     {
@@ -7,159 +7,266 @@
         {
           "type": "text",
           "isRequired": true,
-          "name": "Age",
-          "text": "How old are you?",
-          "title": "Please enter your age",
+          "name": "ID",
+          "text": "ID",
+          "title": "What is the ID for this publication",
           "inputtype": "number",
-          "validators": [{ "type": "numeric", "minvalue": 21, "maxvalue": 120 }]
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "Cite",
+          "text": "Cite",
+          "title": "Please enter: Authors and year for the paper"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "Population",
+          "text": "Population",
+          "title": "What is the population"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "StudyNum",
+          "text": "StudyNum",
+          "title": "What is the number of the experiment / study in the publication?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
         },
         {
           "type": "radiogroup",
-          "name": "Gender",
-          "title": "Are you a man or a woman",
+          "name": "Induced",
+          "title": "Have emotions been induced in the study?",
           "isRequired": true,
           "colCount": 0,
-          "choices": ["Man", "Woman"]
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
-
         {
-       "type": "matrix",
-     "name": "PANAS",
-     "isAllRowRequired": true,
-     "title": "This scale consists of a number of words that describe different feelings and emotions. Read each item and then mark the appropriate answer in the space next to that word. Indicate to what extent you GENERALLY feel this way, that is how you feel ON AVERAGE. Use the following scale to record your answers.",
-     "columns": [
-      {
-       "value": "1",
-       "text": "Very slightly or not at all"
-      },
-      {
-       "value": "2",
-       "text": "A little"
-      },
-      {
-       "value": "3",
-       "text": "Moderately"
-      },
-      {
-       "value": "4",
-       "text": "Quite a bit"
-      },
-      {
-       "value": "5",
-       "text": "Extremely"
-      }
-     ],
-     "rows": [
-      {
-       "value": "PANAS1",
-       "text": "Interested"
-      },
-      {
-       "value": "PANAS2",
-       "text": "Distressed"
-      },
-      {
-       "value": "PANAS3",
-       "text": "Excited"
-      },
-      {
-       "value": "PANAS4",
-       "text": "Upset"
-      },
-      {
-       "value": "PANAS5",
-       "text": "Strong"
-      },
-      {
-       "value": "PANAS6",
-       "text": "Guilty"
-      },
-      {
-       "value": "PANAS7",
-       "text": "Scared"
-      },
-      {
-       "value": "PANAS8",
-       "text": "Hostile"
-      },
-      {
-       "value": "PANAS9",
-       "text": "Enthusiastic"
-      },
-      {
-       "value": "PANAS10",
-       "text": "Proud"
-      },
-      {
-       "value": "PANAS11",
-       "text": "Irritable"
-      },
-      {
-       "value": "PANAS12",
-       "text": "Alert"
-      },
-      {
-       "value": "PANAS13",
-       "text": "Ashamed"
-      },
-      {
-       "value": "PANAS14",
-       "text": "Inspired"
-      },
-      {
-       "value": "PANAS15",
-       "text": "Nervous"
-      },
-      {
-       "value": "PANAS16",
-       "text": "Determined"
-      },
-      {
-       "value": "PANAS17",
-       "text": "Attentive"
-      },
-      {
-       "value": "PANAS18",
-       "text": "Jittery"
-      },
-      {
-       "value": "PANAS19",
-       "text": "Active"
-      },
-      {
-       "value": "PANAS20",
-       "text": "Afraid"
-      }
+          "type": "text",
+          "isRequired": true,
+          "name": "Comparisons",
+          "text": "Comparisons",
+          "title": "How many comparison groups are there in the study?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "Sample size",
+          "text": "Sample size",
+          "title": "What is the sample size in the study?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinAweGroup",
+          "text": "NinAweGroup",
+          "title": "What is the number of participants in the Awe group?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinAweGroup",
+          "text": "NinAweGroup",
+          "title": "What is the number of participants in the Awe group?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_Awe",
+          "title": "M_SD_Awe",
+          "items": [
+            {
+              "name": "M_Awe",
+              "title": "Considering the measurement of awe, what is the mean in the Awe group ?"
+            },
+            {
+              "name": "SD_Awe",
+              "title": "Considering the measurement of awe, what is the standard deviation in the Awe group?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NameOtherGroup1",
+          "text": "NameOtherGroup1",
+          "title": "What is the denomination of other group 1? (enter 0, if there is no such group)"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinOtherGroup1",
+          "text": "NinOtherGroup1",
+          "title": "What is the number of participants in the other group 1? (enter 0, if there is no such group)",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 0,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_OGroup1",
+          "title": "M_SD_OGroup1",
+          "items": [
+            {
+              "name": "M_OGroup1",
+              "title": "Considering the measurement of awe, what is the mean in other group 1?"
+            },
+            {
+              "name": "SD_OGroup1",
+              "title": "Considering the measurement of awe, what is the standard deviation in other group 1?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NameOtherGroup2",
+          "text": "NameOtherGroup2",
+          "title": "What is the denomination of other group 2? (enter 0, if there is no such group)"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinOtherGroup2",
+          "text": "NinOtherGroup2",
+          "title": "What is the number of participants in the other group 2?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 0,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_OGroup2",
+          "title": "M_SD_OGroup2",
+          "items": [
+            {
+              "name": "M_OGroup2",
+              "title": "Considering the measurement of awe, what is the mean in other group 2?"
+            },
+            {
+              "name": "SD_OGroup2",
+              "title": "Considering the measurement of awe, what is the standard deviation in other group 2?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NameOtherGroup3",
+          "text": "NameOtherGroup3",
+          "title": "What is the denomination of other group 3? (enter 0, if there is no such group)"
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_OGroup3",
+          "title": "M_SD_OGroup3",
+          "items": [
+            {
+              "name": "M_OGroup3",
+              "title": "Considering the measurement of awe, what is the mean in other group 3?"
+            },
+            {
+              "name": "SD_OGroup3",
+              "title": "Considering the measurement of awe, what is the standard deviation in other group 3?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NameOtherGroup4",
+          "text": "NameOtherGroup4",
+          "title": "What is the denomination of other group 4? (enter 0, if there is no such group)"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinOtherGroup4",
+          "text": "NinOtherGroup4",
+          "title": "What is the number of participants in the other group 4?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 0,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_OGroup4",
+          "title": "M_SD_OGroup4",
+          "items": [
+            {
+              "name": "M_OGroup4",
+              "title": "Considering the measurement of awe, what is the mean in other group 4?"
+            },
+            {
+              "name": "SD_OGroup4",
+              "title": "Considering the measurement of awe, what is the standard deviation in other group 4?"
+            }
           ]
         }
-      ]
-    },
-    {
-      "elements": [
-                {
-          "type": "ziggeodescribeimageonlyaudio",
-          "isRequired": true,
-          "name": "ZiggeoQ1",
-          "title":
-            "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
-          "url": "https://textective.com/test1.jpg",
-          "API_KEY": "2d6cddc6d40c67375b6d469a875c10e9"
-        }
-
-      ]
-    },
-    {
-      "elements": [
-                {
-          "type": "ziggeodescribeimage",
-          "isRequired": true,
-          "name": "ZiggeoQ2",
-          "title":
-            "First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
-          "url": "https://textective.com/test1.jpg",
-          "API_KEY": "5f4da45b9831d3fa637ffc5286567b38"
-             }
-
       ]
     },
 
@@ -167,15 +274,15 @@
       "elements": [
         {
           "type": "text",
-          "name": "email",
-          "title":
-            "Thank you for taking our survey. Please enter your email address, then press the Submit button."
+          "name": "Cite_check",
+          "title": "Please enter again: Authors and year for the paper, then press the Submit button."
         }
       ]
     }
   ],
   "random": [
-    { "for": [] }, 
-    { "for": [] }, 
-    { "for": [] }]
+    {
+      "for": []
+    }
+  ]
 }
