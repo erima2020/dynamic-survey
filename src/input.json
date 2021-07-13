@@ -23,184 +23,113 @@
         },
 
         {
-          "type": "matrix",
-          "name": "Feelings",
-          "isRequired": false,
-          "minRowCount": 4,
-          "maxRowCount": 4,
-          "title":
-            "Please describe how you are feeling right now using the scale below",
-          "columns": [
-            {
-              "value": 1,
-              "text": "Strongly Disagree"
-            },
-            {
-              "value": 2,
-              "text": "Disagree"
-            },
-            {
-              "value": 3,
-              "text": "Neither agree nor disagree"
-            },
-            {
-              "value": 4,
-              "text": "Agree"
-            },
-            {
-              "value": 5,
-              "text": "Strongly Agree"
-            }
-          ],
-          "rows": [
-            {
-              "value": "Happy",
-              "isRequired": true,
-              "text": "Happy"
-            },
-            {
-              "value": "Sad",
-              "isRequired": true,
-              "text": "Sad"
-            },
-            {
-              "value": "Afraid",
-              "isRequired": true,
-              "text": "Afraid"
-            },
-            {
-              "value": "Angry",
-              "isRequired": true,
-              "text": "Angry"
-            }
-          ]
-        },
-    
-        {
-          "type": "matrix",
-          "name": "Bla",
-          "title": "Bla bla",
-          "isRequired": false,
-          "minRowCount": 20,
-          "maxRowCount": 20,
-          "columns": [
-            {
-              "value": 1,
-              "isRequired": true,
-              "text": "1"
-            },
-            {
-              "value": 2,
-              "isRequired": true,
-              "text": "2"
-            },
-            {
-              "value": 3,
-              "isRequired": true,
-              "text": "3"
-            }
-          ],
-          "rows": [
-            {
-              "value": "Bla1",
-              "isRequired": true,
-              "text": "Bla bla 1"
-            },
-            {
-              "value": "Bla2",
-              "isRequired": true,
-              "text": "Bla bla 2"
-            },
-            {
-              "value": "Bla3",
-              "isRequired": true,
-              "text": "Bla bla 3"
-            },
-            {
-              "value": "Bla4",
-              "isRequired": true,
-              "text": "Bla bla 4"
-            },
-            {
-              "value": "Bla5",
-              "isRequired": true,
-              "text": "Bla bla 5"
-            },
-            {
-              "value": "Bla6",
-              "isRequired": true,
-              "text": "Bla bla 6"
-            },
-            {
-              "value": "Bla7",
-              "isRequired": true,
-              "text": "Bla bla 7"
-            },
-            {
-              "value": "Bla8",
-              "isRequired": true,
-              "text": "Bla bla 8"
-            },
-            {
-              "value": "Bla9",
-              "isRequired": true,
-              "text": "Bla bla 9"
-            },
-            {
-              "value": "Bla10",
-              "isRequired": true,
-              "text": "Bla bla 10"
-            },
-            {
-              "value": "Bla11",
-              "isRequired": true,
-              "text": "Bla bla 11"
-            },
-            {
-              "value": "Bla12",
-              "isRequired": true,
-              "text": "Bla bla 12"
-            },
-            {
-              "value": "Bla 13",
-              "isRequired": true,
-              "text": "Bla bla 13"
-            },
-            {
-              "value": "Bla 14",
-              "isRequired": true,
-              "text": "Bla bla 14"
-            },
-            {
-              "value": "Bla15",
-              "isRequired": true,
-              "text": "Bla bla 15"
-            },
-            {
-              "value": "Bla16",
-              "isRequired": true,
-              "text": "Bla bla 16"
-            },
-            {
-              "value": "Bla17",
-              "isRequired": true,
-              "text": "Bla bla 17"
-            },
-            {
-              "value": "Bla18",
-              "isRequired": true,
-              "text": "Bla bla 18"
-            },
-            {
-              "value": "Bla19",
-              "isRequired": true,
-              "text": "Bla bla 19"
-            },
-            {
-              "value": "Bla20",
-              "isRequired": true,
-              "text": "Bla bla 20"
-            }
+       "type": "matrix",
+     "name": "PANAS",
+     "isAllRowRequired": true,
+     "title": "This scale consists of a number of words that describe different feelings and emotions. Read each item and then mark the appropriate answer in the space next to that word. Indicate to what extent you GENERALLY feel this way, that is how you feel ON AVERAGE. Use the following scale to record your answers.",
+     "columns": [
+      {
+       "value": "1",
+       "text": "Very slightly or not at all"
+      },
+      {
+       "value": "2",
+       "text": "A little"
+      },
+      {
+       "value": "3",
+       "text": "Moderately"
+      },
+      {
+       "value": "4",
+       "text": "Quite a bit"
+      },
+      {
+       "value": "5",
+       "text": "Extremely"
+      }
+     ],
+     "rows": [
+      {
+       "value": "PANAS1",
+       "text": "Interested"
+      },
+      {
+       "value": "PANAS2",
+       "text": "Distressed"
+      },
+      {
+       "value": "PANAS3",
+       "text": "Excited"
+      },
+      {
+       "value": "PANAS4",
+       "text": "Upset"
+      },
+      {
+       "value": "PANAS5",
+       "text": "Strong"
+      },
+      {
+       "value": "PANAS6",
+       "text": "Guilty"
+      },
+      {
+       "value": "PANAS7",
+       "text": "Scared"
+      },
+      {
+       "value": "PANAS8",
+       "text": "Hostile"
+      },
+      {
+       "value": "PANAS9",
+       "text": "Enthusiastic"
+      },
+      {
+       "value": "PANAS10",
+       "text": "Proud"
+      },
+      {
+       "value": "PANAS11",
+       "text": "Irritable"
+      },
+      {
+       "value": "PANAS12",
+       "text": "Alert"
+      },
+      {
+       "value": "PANAS13",
+       "text": "Ashamed"
+      },
+      {
+       "value": "PANAS14",
+       "text": "Inspired"
+      },
+      {
+       "value": "PANAS15",
+       "text": "Nervous"
+      },
+      {
+       "value": "PANAS16",
+       "text": "Determined"
+      },
+      {
+       "value": "PANAS17",
+       "text": "Attentive"
+      },
+      {
+       "value": "PANAS18",
+       "text": "Jittery"
+      },
+      {
+       "value": "PANAS19",
+       "text": "Active"
+      },
+      {
+       "value": "PANAS20",
+       "text": "Afraid"
+      }
           ]
         }
       ]
@@ -234,47 +163,6 @@
       ]
     },
 
-     
-    {
-      "elements": [
-        {
-          "type": "radiogroup",
-          "name": "price to competitors",
-          "title": "Compared to our competitors, do you feel the Product is",
-          "choices": [
-            "Less expensive",
-            "Priced about the same",
-            "More expensive",
-            "Not sure"
-          ]
-        },
-        {
-          "type": "radiogroup",
-          "name": "price",
-          "title": "Do you feel our current price is merited by our product?",
-          "choices": [
-            "correct|Yes, the price is about right",
-            "low|No, the price is too low for your product",
-            "high|No, the price is too high for your product"
-          ]
-        },
-        {
-          "type": "multipletext",
-          "name": "pricelimit",
-          "title": "What is the... ",
-          "items": [
-            {
-              "name": "mostamount",
-              "title": "Most amount you would every pay for a product like ours"
-            },
-            {
-              "name": "leastamount",
-              "title": "The least amount you would feel comfortable paying"
-            }
-          ]
-        }
-      ]
-    },
     {
       "elements": [
         {
@@ -287,7 +175,6 @@
     }
   ],
   "random": [
-    { "for": [] }, 
     { "for": [] }, 
     { "for": [] }, 
     { "for": [] }]
