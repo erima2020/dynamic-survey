@@ -105,21 +105,6 @@
           ]
         },
         {
-          "type": "text",
-          "isRequired": true,
-          "name": "NinAweGroup",
-          "text": "NinAweGroup",
-          "title": "What is the number of participants in the Awe group?",
-          "inputtype": "number",
-          "validators": [
-            {
-              "type": "numeric",
-              "minvalue": 1,
-              "maxvalue": 450
-            }
-          ]
-        },
-        {
           "type": "multipletext",
           "name": "M_SD_Awe",
           "title": "M_SD_Awe",
@@ -265,6 +250,17 @@
               "name": "SD_OGroup4",
               "title": "Considering the measurement of awe, what is the standard deviation in other group 4?"
             }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "OtherRelevantMeasures",
+          "title": "Are there other relevant measures in the study?",
+          "isRequired": true,
+          "colCount": 0,
+          "choices": [
+            "Yes",
+            "No"
           ]
         }
       ]
