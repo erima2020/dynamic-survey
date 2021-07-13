@@ -95,7 +95,6 @@
           "name": "Induc_Descr",
           "text": "Induc_Descr",
           "title": "Copy-paste the description of the induction below"
-          ]
         },
         {
           "type": "text",
