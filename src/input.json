@@ -29,13 +29,6 @@
         {
           "type": "text",
           "isRequired": true,
-          "name": "Population",
-          "text": "Population",
-          "title": "What is the population"
-        },
-        {
-          "type": "text",
-          "isRequired": true,
           "name": "StudyNum",
           "text": "StudyNum",
           "title": "What is the number of the experiment / study in the publication?",
@@ -49,6 +42,43 @@
           ]
         },
         {
+          "type": "text",
+          "isRequired": true,
+          "name": "Population",
+          "text": "Population",
+          "title": "What is the population"
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "pct_women",
+          "text": "pct_women",
+          "title": "What is the percentage of women in the study?",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 1,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
+          "type": "multipletext",
+          "name": "M_SD_Age",
+          "title": "M_SD_Age",
+          "items": [
+            {
+              "name": "M_Age",
+              "title": "What is the mean age of participants in the study? (if unknown, enter -9999)"
+            },
+            {
+              "name": "SD_Age",
+              "title": "What is the standard deviation of the age of participants in the study? (if unknown, enter -9999)"
+            }
+          ]
+        },
+        {
           "type": "radiogroup",
           "name": "Induced",
           "title": "Have emotions been induced in the study?",
@@ -57,6 +87,14 @@
           "choices": [
             "Yes",
             "No"
+          ]
+        },
+        {
+          "type": "text",
+          "isRequired": true,
+          "name": "Induc_Descr",
+          "text": "Induc_Descr",
+          "title": "Copy-paste the description of the induction below"
           ]
         },
         {
