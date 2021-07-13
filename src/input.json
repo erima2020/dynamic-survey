@@ -94,7 +94,7 @@
           "isRequired": true,
           "name": "NinAweGroup",
           "text": "NinAweGroup",
-          "title": "What is the number of participants in the Awe group?",
+          "title": "What is the number of participants in the Awe group? ? (if unknown, enter -9999)",
           "inputtype": "number",
           "validators": [
             {
@@ -131,7 +131,7 @@
           "isRequired": true,
           "name": "NinOtherGroup1",
           "text": "NinOtherGroup1",
-          "title": "What is the number of participants in the other group 1? (enter 0, if there is no such group)",
+          "title": "What is the number of participants in the other group 1? (enter 0, if there is no such group; if unknown, enter -9999)",
           "inputtype": "number",
           "validators": [
             {
@@ -168,7 +168,7 @@
           "isRequired": true,
           "name": "NinOtherGroup2",
           "text": "NinOtherGroup2",
-          "title": "What is the number of participants in the other group 2?",
+          "title": "What is the number of participants in the other group 2? (enter 0, if there is no such group; if unknown, enter -9999)",
           "inputtype": "number",
           "validators": [
             {
@@ -201,6 +201,21 @@
           "title": "What is the denomination of other group 3? (enter 0, if there is no such group)"
         },
         {
+          "type": "text",
+          "isRequired": true,
+          "name": "NinOtherGroup3",
+          "text": "NinOtherGroup3",
+          "title": "What is the number of participants in the other group 3? (enter 0, if there is no such group; if unknown, enter -9999)",
+          "inputtype": "number",
+          "validators": [
+            {
+              "type": "numeric",
+              "minvalue": 0,
+              "maxvalue": 450
+            }
+          ]
+        },
+        {
           "type": "multipletext",
           "name": "M_SD_OGroup3",
           "title": "M_SD_OGroup3",
@@ -227,7 +242,7 @@
           "isRequired": true,
           "name": "NinOtherGroup4",
           "text": "NinOtherGroup4",
-          "title": "What is the number of participants in the other group 4?",
+          "title": "What is the number of participants in the other group 4? (enter 0, if there is no such group; if unknown, enter -9999)",
           "inputtype": "number",
           "validators": [
             {
