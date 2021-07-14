@@ -3,8 +3,21 @@ export const combineInput = (list) => {
         list.pages = list.pages.map((page, index) => {
             return perPage(page, list.random[index]);
         });
-        return list;
     }
+    console.log(list.pages);
+    if (list.pagesRandom && list.pagesRandom.length) {
+        list.pagesRandom.map((item) => {
+            const randomNumber1 = item[Math.floor(Math.random() * item.length)];
+            const arr2 = [randomNumber1];
+            const randomNumber2 = item.filter((i) => !arr2.includes(i))[0];
+            let pages = JSON.parse(JSON.stringify(list.pages));
+            const temp = pages[randomNumber1];
+            pages[randomNumber1] = pages[randomNumber2];
+            pages[randomNumber2] = temp;
+            list.pages = JSON.parse(JSON.stringify(pages));
+        });
+    }
+    console.log('below',list.pages);
     list.pages[list.pages.length - 1].elements.push({
         type: "random-id",
         text: "survey id",
@@ -73,4 +86,16 @@ const withHard = (page, random) => {
         }
     }
     return { ...page, elements: newPage };
+};
+
+const swap = ({ pages, randomNumber1, randomNumber2 }) => {
+    console.log({ pages });
+    // const temp = pages[randomNumber1];
+    // pages[randomNumber1] = pages[randomNumber2];
+    // pages[randomNumber2] = temp;
+    [pages[randomNumber1], pages[randomNumber2]] = [
+        pages[randomNumber2],
+        pages[randomNumber1],
+    ];
+    console.log({ pages });
 };

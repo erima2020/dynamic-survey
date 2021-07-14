@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import * as Survey from "survey-react";
 import * as widgets from "surveyjs-widgets";
 import Loader from "react-loader-spinner";
@@ -47,8 +47,8 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-    const additionalCheckJSON = combineInput(inputObj);
-    const model = new Survey.Model(additionalCheckJSON);
+    const [additionalCheckJSON, setAdditionalCheckJSON] = useState([]);
+    const [model, setModel] = useState([]);
     const [startDate] = useState(new Date());
     const [ip, setIP] = useState(null);
     const [loader, setLoader] = useState(true);
@@ -90,16 +90,21 @@ export function SurveyPage() {
         //     })
         //     .catch((err) => console.log(err));
         try {
+            let result = combineInput(inputObj);
+
+            setAdditionalCheckJSON(result);
+            result = new Survey.Model(result);
+            setModel(result);
             let response = await fetch("http://192.168.29.79:3001/ipvalidate");
             response = await response.json();
-            setLoader(false)
+            setLoader(false);
             setData(response.data);
             setSuccess(true);
         } catch (error) {
             setSuccess(false);
         }
     }, []);
-
+    console.log({model});
     return (
         <div className="container">
             <h2>USING: SurveyJS Library - a sample survey below</h2>
