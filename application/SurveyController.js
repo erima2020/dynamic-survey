@@ -1,5 +1,6 @@
 const Survey = require("./Survey");
 const RequestIp = require("@supercharge/request-ip");
+require("dotenv").config();
 const uploadSurvey = async (req, res) => {
     try {
         req.body.ip = RequestIp.getClientIp(req);
@@ -34,15 +35,21 @@ const getSurvey = async (req, res) => {
 const getIpVaildation = async (req, res) => {
     try {
         const ip = RequestIp.getClientIp(req);
-        const result = await Survey.find({ ip: ip }).lean();
-        if (result.length > 0) {
-            res.status(200).send({
-                data: true,
-            });
-        } else {
+        if (process.env.IP_VAILDATION !== "true") {
             res.status(200).send({
                 data: false,
             });
+        } else {
+            const result = await Survey.find({ ip: ip }).lean();
+            if (result.length > 0) {
+                res.status(200).send({
+                    data: true,
+                });
+            } else {
+                res.status(200).send({
+                    data: false,
+                });
+            }
         }
     } catch (error) {
         return res.status(500).send({
