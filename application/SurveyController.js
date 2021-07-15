@@ -35,7 +35,7 @@ const getSurvey = async (req, res) => {
 const getIpVaildation = async (req, res) => {
   try {
     const ip = RequestIp.getClientIp(req);
-    if (process.env.IP_VAILDATION !== "true") {
+    if (process.env.IP_VALIDATION !== "true") {
       res.status(200).send({
         data: false,
       });
