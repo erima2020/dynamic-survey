@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, "build")));
 app.post("/upload", Survey.uploadSurvey);
 app.get("/response", Survey.getSurvey);
 app.get("/ipvalidate", Survey.getIpVaildation);
+app.get("/unique-id", Survey.getRandomUniqueId);
 
 app.disable("etag");
 // frontend deployment

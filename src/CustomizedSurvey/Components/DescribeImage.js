@@ -37,7 +37,6 @@ export class DescribeImage extends Survey.SurveyElementBase {
     }
 
     recorderUploaded = (ref) => {
-        console.log({ ref });
         const {
             stream_data: { token, video_token, type },
         } = ref;

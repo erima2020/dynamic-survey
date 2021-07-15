@@ -434,10 +434,15 @@
                     "type": "text",
                     "name": "email",
                     "title": "Thank you for taking our survey. Please enter your email address, then press the Submit button."
+                },
+                {
+                    "type": "server-random-id",
+                    "name": "code",
+                    "title" : "Your survey Id"
                 }
             ]
         }
     ],
     "random": [{ "for": [1, 3] }, { "for": [1, 3] }, { "for": [1, 2] }],
-    "pagesRandom": [[1, 3]]
+    "randomPage" : [0, 3]
 }

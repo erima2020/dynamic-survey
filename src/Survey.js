@@ -27,6 +27,7 @@ window["$"] = window["jQuery"] = $;
 export { DescribeImageOnlyAudio } from "./CustomizedSurvey/Components/DescribeImageAudio";
 export { DescribeImage } from "./CustomizedSurvey/Components/DescribeImage";
 export { RandomId } from "./CustomizedSurvey/Components/RandomId";
+export { ServerRandomId } from "./CustomizedSurvey/Components/ServerRandomId";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -56,7 +57,7 @@ export function SurveyPage() {
     const [data, setData] = useState(false);
 
     const saveData = (data) => {
-        fetch("http://192.168.29.79:3001/upload", {
+        fetch("/upload", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -67,7 +68,6 @@ export function SurveyPage() {
     };
 
     const onComplete = (result) => {
-        console.log(result.data);
         saveData({
             data: result.data,
             questionaire: additionalCheckJSON,
@@ -80,22 +80,13 @@ export function SurveyPage() {
     };
 
     useEffect(async () => {
-        // fetch("https://api.ipify.org?format=json")
-        //     .then((response) => {
-        //         return response.json();
-        //     })
-        //     .then((res) => {
-        //         // check if ip exist or not
-        //         setIP(res.ip);
-        //     })
-        //     .catch((err) => console.log(err));
         try {
             let result = combineInput(inputObj);
 
             setAdditionalCheckJSON(result);
             result = new Survey.Model(result);
             setModel(result);
-            let response = await fetch("http://192.168.29.79:3001/ipvalidate");
+            let response = await fetch("/ipvalidate");
             response = await response.json();
             setLoader(false);
             setData(response.data);
@@ -104,7 +95,6 @@ export function SurveyPage() {
             setSuccess(false);
         }
     }, []);
-    console.log({model});
     return (
         <div className="container">
             <h2>USING: SurveyJS Library - a sample survey below</h2>
