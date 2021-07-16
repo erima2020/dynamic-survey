@@ -70,7 +70,7 @@ export function SurveyPage() {
     const onComplete = (result) => {
         saveData({
             data: result.data,
-            questionaire: additionalCheckJSON,
+            randomOrder: additionalCheckJSON.order,
             timestamp: {
                 startDate,
                 endDate: new Date(),

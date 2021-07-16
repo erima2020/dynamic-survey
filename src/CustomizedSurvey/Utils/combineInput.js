@@ -73,6 +73,7 @@ const withHard = (page, random) => {
 
 const randomizePage = (list, random) => {
     const newPage = [];
+    const order = [];
     const preSet = [].concat([...random]);
     const nextSet = [].concat([...random]);
     for (let i = 0; i < list.pages.length; i++) {
@@ -88,9 +89,12 @@ const randomizePage = (list, random) => {
             nextSet.splice(nextsetIndex, 1);
 
             newPage.push(list.pages[randomElement]);
+
+            order.push(randomElement);
         } else {
             newPage.push(page);
+            order.push(i);
         }
     }
-    return { ...list, pages: newPage };
+    return { ...list, pages: newPage, order };
 };
