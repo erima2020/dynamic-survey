@@ -26,6 +26,12 @@ export class DescribeImageModel extends Survey.Question {
     set API_KEY(newValue) {
         this.setPropertyValue("API_KEY", newValue);
     }
+    get transcription() {
+        return this.getPropertyValue("transcription", "");
+    }
+    set transcription(newValue) {
+        this.setPropertyValue("transcription", newValue);
+    }
 }
 
 export class DescribeImage extends Survey.SurveyElementBase {
@@ -40,10 +46,12 @@ export class DescribeImage extends Survey.SurveyElementBase {
         const {
             stream_data: { token, video_token, type },
         } = ref;
+        const { transcription } = this.question;
         this.question.value = {
             token,
             video_token,
             type,
+            transcription
         };
     };
 
@@ -51,10 +59,12 @@ export class DescribeImage extends Survey.SurveyElementBase {
         const {
             stream_data: { token, video_token, type },
         } = ref;
+        const { transcription } = this.question;
         this.question.value = {
             token,
             video_token,
             type,
+            transcription
         };
     };
 
@@ -90,7 +100,7 @@ export class DescribeImage extends Survey.SurveyElementBase {
 
 Survey.Serializer.addClass(
     TYPE_NAME,
-    [{ name: "text" }, { name: "url" }, { name: "API_KEY" }],
+    [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }],
     function () {
         return new DescribeImageModel("");
     },

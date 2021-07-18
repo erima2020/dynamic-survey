@@ -53,6 +53,7 @@ export function SurveyPage() {
     const [startDate] = useState(new Date());
     const [ip, setIP] = useState(null);
     const [loader, setLoader] = useState(true);
+    const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [data, setData] = useState(false);
 
@@ -93,43 +94,80 @@ export function SurveyPage() {
             setSuccess(true);
         } catch (error) {
             setSuccess(false);
+            setLoader(false);
+            setError(error);
         }
     }, []);
+
+    const renderer = () => {
+        if(loader){
+           return <div
+            style={{
+                display: "flex",
+                flex: 1,
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <Loader
+                type="Oval"
+                color="#EE1C25"
+                height={39}
+                width={80}
+            />
+        </div>
+        } else if(error){
+            return (<div
+            style={{
+                display: "flex",
+                flex: 1,
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <h2>{error.message}</h2>
+        </div>)
+        } else if(data) {
+            return <div
+            style={{
+                display: "flex",
+                flex: 1,
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <h2>Survey already submitted</h2>
+        </div>
+        } else if(!success) {
+            return <div
+            style={{
+                display: "flex",
+                flex: 1,
+                height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <h2>Some Error Occurred</h2>
+        </div>
+        } else {
+            return <Survey.Survey
+            model={model}
+            onComplete={onComplete}
+            onValueChanged={onValueChanged}
+        />
+        }
+    }
+
     return (
         <div className="container">
             <h2>USING: SurveyJS Library - a sample survey below</h2>
-            {!loader ? (
-                success ? (
-                    !data ? (
-                        <Survey.Survey
-                            model={model}
-                            onComplete={onComplete}
-                            onValueChanged={onValueChanged}
-                        />
-                    ) : (
-                        <h2>Survey already submitted</h2>
-                    )
-                ) : (
-                    <h2>Some Error Occured</h2>
-                )
-            ) : (
-                <div
-                    style={{
-                        display: "flex",
-                        flex: 1,
-                        height: "100vh",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <Loader
-                        type="Oval"
-                        color="#EE1C25"
-                        height={39}
-                        width={80}
-                    />
-                </div>
-            )}
+            {
+                renderer()
+            }
         </div>
     );
 }
