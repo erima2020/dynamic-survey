@@ -191,7 +191,8 @@
                     "name": "ZiggeoQ2",
                     "title": "CUSTOM: First click on Record Video, Autorize access to webcam, and click Record again (change if the steps are different through the SDK). Then to provide you answer: Please describe the picture.",
                     "url": "https://picsum.photos/200/300",
-                    "API_KEY": "d76dc0a09dd69568763a1010aae745f2"
+                    "API_KEY": "d76dc0a09dd69568763a1010aae745f2",
+                    "transcription": true
                 },
 
                 {
@@ -443,6 +444,19 @@
             ]
         }
     ],
-    "random": [{ "for": [1, 3] }, { "for": [1, 3] }, { "for": [1, 2] }],
-    "randomPage" : [0, 3]
+    "random": [
+        { 
+            "for": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+        },
+        {
+            "for": []
+        },
+        {
+            "for": [1, 2, 3]
+        },
+        {
+            "for": [1, 2]
+        }
+    ],
+    "randomPage" : [ 2, 3, 4]
 }
