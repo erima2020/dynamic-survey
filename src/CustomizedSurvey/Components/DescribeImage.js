@@ -87,6 +87,8 @@ export class DescribeImage extends Survey.SurveyElementBase {
                     application={API_KEY}
                     height={180}
                     width={320}
+                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
+                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     onRef={(ref) => this.setRecorder(ref)}
                     allowupload={false}
                     onVerified={this.recorderVerified}
