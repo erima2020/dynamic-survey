@@ -86,6 +86,8 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
                 <ZiggeoRecorder
                     onlyaudio={true}
                     application={API_KEY}
+                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
+                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     height={180}
                     width={320}
                     onRef={(ref) => this.setRecorder(ref)}
