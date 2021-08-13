@@ -1,6 +1,8 @@
 import React from "react";
 import * as Survey from "survey-react";
 import { ZiggeoRecorder } from "react-ziggeo";
+import SlideShow from './../../common/SlideShow';
+import LoadImage from "../../common/LoadingImage";
 
 const TYPE_NAME = "ziggeodescribeimageonlyaudio";
 
@@ -94,7 +96,11 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
                 <div>
                     <b>{text}</b>
                 </div>
-                <img src={url} alt={text} height={height} width={width} />
+                {
+                    Array.isArray(url) ? 
+                    <SlideShow images={url} alt={text} height={height} width={width} /> :
+                    <LoadImage src={url} alt={text} height={height} width={width}/> 
+                }
                 <ZiggeoRecorder
                     onlyaudio={true}
                     application={API_KEY}
