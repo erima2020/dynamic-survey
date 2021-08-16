@@ -7,7 +7,7 @@ const uploadSurvey = async (req, res) => {
   try {
     const ip = RequestIp.getClientIp(req);
     req.body.ip = ip;
-    if (req.body?.data?.code) {
+    if (req.body && req.body.data && req.body.data.code) {
       await Survey.findOneAndUpdate({ 'data.code': req.body.data.code }, req.body, {
         upsert: true,
       });
