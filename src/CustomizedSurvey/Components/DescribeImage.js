@@ -1,6 +1,8 @@
 import React from "react";
 import * as Survey from "survey-react";
 import { ZiggeoRecorder } from "react-ziggeo";
+import SlideShow from './../../common/SlideShow';
+import LoadImage from "../../common/LoadingImage";
 
 const TYPE_NAME = "ziggeodescribeimage";
 
@@ -31,6 +33,18 @@ export class DescribeImageModel extends Survey.Question {
     }
     set transcription(newValue) {
         this.setPropertyValue("transcription", newValue);
+    }
+    get width() {
+        return this.getPropertyValue("width", "");
+    }
+    set width(newValue) {
+        this.setPropertyValue("width", newValue);
+    }
+    get height() {
+        return this.getPropertyValue("height", "");
+    }
+    set height(newValue) {
+        this.setPropertyValue("height", newValue);
     }
 }
 
@@ -76,13 +90,17 @@ export class DescribeImage extends Survey.SurveyElementBase {
 
     render() {
         if (!this.question) return null;
-        const { text, url, API_KEY, cssClasses, transcription } = this.question;
+        const { text, url, API_KEY, cssClasses, transcription, height, width } = this.question;
         return (
             <div className={cssClasses.root}>
                 <div>
                     <b>{text}</b>
                 </div>
-                <img src={url} alt={text} />
+                {
+                    Array.isArray(url) ? 
+                    <SlideShow images={url} alt={text} height={height} width={width} /> :
+                    <LoadImage src={url} alt={text} height={height} width={width}/> 
+                }
                 <ZiggeoRecorder
                     application={API_KEY}
                     height={180}
@@ -102,7 +120,7 @@ export class DescribeImage extends Survey.SurveyElementBase {
 
 Survey.Serializer.addClass(
     TYPE_NAME,
-    [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }],
+    [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }, { name: "height" }, { name: "width" }],
     function () {
         return new DescribeImageModel("");
     },

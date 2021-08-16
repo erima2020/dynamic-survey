@@ -1,12 +1,10 @@
 import React from "react";
 import * as Survey from "survey-react";
 import { ZiggeoRecorder } from "react-ziggeo";
-import SlideShow from './../../common/SlideShow';
-import LoadImage from "../../common/LoadingImage";
 
-const TYPE_NAME = "ziggeodescribeimageonlyaudio";
+const TYPE_NAME = "ziggeodescribevideo";
 
-export class DescribeImageOnlyAudioModel extends Survey.Question {
+export class DescribeVideoModel extends Survey.Question {
     getType() {
         return TYPE_NAME;
     }
@@ -48,7 +46,7 @@ export class DescribeImageOnlyAudioModel extends Survey.Question {
     }
 }
 
-export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
+export class DescribeVideo extends Survey.SurveyElementBase {
     state = {
         recorder: null,
     };
@@ -96,18 +94,16 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
                 <div>
                     <b>{text}</b>
                 </div>
-                {
-                    Array.isArray(url) ? 
-                    <SlideShow images={url} alt={text} height={height} width={width} /> :
-                    <LoadImage src={url} alt={text} height={height} width={width}/> 
-                }
+                <video width={width} height={height} controls>
+                    <source src={url} />
+                    Your browser does not support HTML video.
+                </video>
                 <ZiggeoRecorder
-                    onlyaudio={true}
                     application={API_KEY}
-                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
-                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     height={180}
                     width={320}
+                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
+                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     onRef={(ref) => this.setRecorder(ref)}
                     allowupload={false}
                     onVerified={this.recorderVerified}
@@ -123,11 +119,11 @@ Survey.Serializer.addClass(
     TYPE_NAME,
     [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }, { name: "height" }, { name: "width" }],
     function () {
-        return new DescribeImageOnlyAudioModel("");
+        return new DescribeVideoModel("");
     },
     "question"
 );
 
 Survey.ReactQuestionFactory.Instance.registerQuestion(TYPE_NAME, (props) => {
-    return React.createElement(DescribeImageOnlyAudio, props);
+    return React.createElement(DescribeVideo, props);
 });

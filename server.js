@@ -12,6 +12,7 @@ const app = express();
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
 });
 mongoose.connection.on("error", function (error) {
     console.log("error", error);
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.post("/upload", Survey.uploadSurvey);
 app.get("/response", Survey.getSurvey);
+app.get("/input", Survey.getInput);
 app.get("/ipvalidate", Survey.getIpVaildation);
 app.get("/unique-id", Survey.getRandomUniqueId);
 
