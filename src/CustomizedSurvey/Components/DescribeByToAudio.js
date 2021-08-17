@@ -1,12 +1,10 @@
 import React from "react";
 import * as Survey from "survey-react";
 import { ZiggeoRecorder } from "react-ziggeo";
-import SlideShow from './../../common/SlideShow';
-import LoadImage from "../../common/LoadingImage";
 
-const TYPE_NAME = "ziggeodescribeimageonlyaudio";
+const TYPE_NAME = "ziggeodescribeaudiowithaudio";
 
-export class DescribeImageOnlyAudioModel extends Survey.Question {
+export class DescribeByToAudioModel extends Survey.Question {
     getType() {
         return TYPE_NAME;
     }
@@ -48,7 +46,7 @@ export class DescribeImageOnlyAudioModel extends Survey.Question {
     }
 }
 
-export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
+export class DescribeByToAudio extends Survey.SurveyElementBase {
     state = {
         recorder: null,
     };
@@ -96,11 +94,10 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
                 <div>
                     <b>{text}</b>
                 </div>
-                {
-                    Array.isArray(url) ? 
-                    <SlideShow images={url} alt={text} height={height} width={width} /> :
-                    <LoadImage src={url} alt={text} height={height} width={width}/> 
-                }
+                <audio controls>
+                    <source src={url} />
+                    Your browser does not support the audio element.
+                </audio>
                 <ZiggeoRecorder
                     onlyaudio={true}
                     application={API_KEY}
@@ -123,11 +120,11 @@ Survey.Serializer.addClass(
     TYPE_NAME,
     [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }, { name: "height" }, { name: "width" }],
     function () {
-        return new DescribeImageOnlyAudioModel("");
+        return new DescribeByToAudioModel("");
     },
     "question"
 );
 
 Survey.ReactQuestionFactory.Instance.registerQuestion(TYPE_NAME, (props) => {
-    return React.createElement(DescribeImageOnlyAudio, props);
+    return React.createElement(DescribeByToAudio, props);
 });

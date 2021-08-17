@@ -1,12 +1,10 @@
 import React from "react";
 import * as Survey from "survey-react";
 import { ZiggeoRecorder } from "react-ziggeo";
-import SlideShow from './../../common/SlideShow';
-import LoadImage from "../../common/LoadingImage";
 
-const TYPE_NAME = "ziggeodescribeimageonlyaudio";
+const TYPE_NAME = "ziggeodescribetext";
 
-export class DescribeImageOnlyAudioModel extends Survey.Question {
+export class DescribeTextModel extends Survey.Question {
     getType() {
         return TYPE_NAME;
     }
@@ -16,11 +14,11 @@ export class DescribeImageOnlyAudioModel extends Survey.Question {
     set text(newValue) {
         this.setPropertyValue("text", newValue);
     }
-    get url() {
-        return this.getPropertyValue("url", "");
+    get message() {
+        return this.getPropertyValue("message", "");
     }
-    set url(newValue) {
-        this.setPropertyValue("url", newValue);
+    set message(newValue) {
+        this.setPropertyValue("message", newValue);
     }
     get API_KEY() {
         return this.getPropertyValue("API_KEY", "");
@@ -48,7 +46,7 @@ export class DescribeImageOnlyAudioModel extends Survey.Question {
     }
 }
 
-export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
+export class DescribeText extends Survey.SurveyElementBase {
     state = {
         recorder: null,
     };
@@ -90,24 +88,19 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
 
     render() {
         if (!this.question) return null;
-        const { text, url, API_KEY, cssClasses, transcription, height, width } = this.question;
+        const { text, message, API_KEY, cssClasses, transcription, height, width } = this.question;
         return (
             <div className={cssClasses.root}>
                 <div>
                     <b>{text}</b>
                 </div>
-                {
-                    Array.isArray(url) ? 
-                    <SlideShow images={url} alt={text} height={height} width={width} /> :
-                    <LoadImage src={url} alt={text} height={height} width={width}/> 
-                }
+                <p>{message}</p>
                 <ZiggeoRecorder
-                    onlyaudio={true}
                     application={API_KEY}
-                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
-                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     height={180}
                     width={320}
+                    meta-profile='_RECORD_AUDIO_TRANSCRIPT'
+                    ziggeo-meta-profile='_RECORD_AUDIO_TRANSCRIPT'
                     onRef={(ref) => this.setRecorder(ref)}
                     allowupload={false}
                     onVerified={this.recorderVerified}
@@ -121,13 +114,13 @@ export class DescribeImageOnlyAudio extends Survey.SurveyElementBase {
 
 Survey.Serializer.addClass(
     TYPE_NAME,
-    [{ name: "text" }, { name: "url" }, { name: "API_KEY" }, { name: "transcription" }, { name: "height" }, { name: "width" }],
+    [{ name: "text" }, { name: "message" }, { name: "API_KEY" }, { name: "transcription" }, { name: "height" }, { name: "width" }],
     function () {
-        return new DescribeImageOnlyAudioModel("");
+        return new DescribeTextModel("");
     },
     "question"
 );
 
 Survey.ReactQuestionFactory.Instance.registerQuestion(TYPE_NAME, (props) => {
-    return React.createElement(DescribeImageOnlyAudio, props);
+    return React.createElement(DescribeText, props);
 });

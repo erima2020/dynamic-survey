@@ -29,20 +29,35 @@ More than that, this boilerplate contains ziggeo as well which you need to pass 
 ```
 /// Add this into your json object
 {
-    type: "videocomponent",
-    name: "Please upload your video",
-    text: "Please describe the picture",
-    url: "https://picsum.photos/200/300",
-    API_KEY: "<your-api-key>",
-}
+   "type": "ziggeodescribeimage",
+   "name": "ZiggeoQ1",
+   "title": "First click on Record Video",
+   "url": "https://picsum.photos/200/300",
+   "API_KEY": "<your-api-key>",
+   "transcription": true
+},
+{
+   "type": "ziggeodescribeimageonlyaudio",
+   "name": "ZiggeoQ1",
+   "title": "First click on Record Video",
+   "url": "https://picsum.photos/200/300",
+   "API_KEY": "<your-api-key>",
+   "transcription": true
+},
+{
+   "type": "server-random-id",
+   "name": "code",
+   "title" : "Your survey Id"
+},
 ```
 
 ### Random series from picking
 Note: If you want to use all random questions, please go ahead with the SurveyJS random order
-If you want to only a set of questions to be randomized then you can pass one more keyword in your JSON data
+If you want to only a set of questions to be randomized then you can pass one more keyword in your JSON data and for randomizing the pages you can follow randomPage key word
 `random: [
     { for: [1, 2, 4, 5] }
-  ]
+  ],
+randomPage : [0, 3]
 `
 here random will have one or more objects based on the pages
 You need to pass the index of which question to wanted to be randomized and that will be with the other items mentioned in the same array
@@ -83,7 +98,10 @@ Install the dependecies in your app. Change it according to your current behavio
 To add a new component you can add in the survey which you wanted to add as follow
 ```
 export { DescribeImage } from ".<your-project-root>/CustomizedSurvey/Components/DescribeImage";
-export { TextWithButton } from ".<your-project-root>/CustomizedSurvey/Components/TextWithButton";
+export { DescribeImageOnlyAudio } from ".<your-project-root>/CustomizedSurvey/Components/DescribeImageAudio";
+export { DescribeImage } from ".<your-project-root>/CustomizedSurvey/Components/DescribeImage";
+export { RandomId } from ".<your-project-root>/CustomizedSurvey/Components/RandomId";
+export { ServerRandomId } from ".<your-project-root>/CustomizedSurvey/Components/ServerRandomId";
 ```
 
 this way you can use this repo in your existing app
@@ -92,3 +110,4 @@ this way you can use this repo in your existing app
 ## Environment Variables
 - REACT_APP_ZIGGEO_API_KEY - A secret app key for the ziggeo
 - DATABASE_URL - A MongoDB url where you want to store the information
+- IP_VALIDATION - [Optional] If you want to block the ip to only one survey

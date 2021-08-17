@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import * as Survey from "survey-react";
 import * as widgets from "surveyjs-widgets";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "survey-react/survey.css";
 import "jquery-ui/themes/base/all.css";
 import "nouislider/distribute/nouislider.css";
@@ -22,9 +24,16 @@ import { combineInput } from "./CustomizedSurvey/Utils/combineInput.js";
 
 window["$"] = window["jQuery"] = $;
 
-export { DescribeImageOnlyAudio } from "./CustomizedSurvey/Components/DescribeImageAudio";
+export { DescribeByAudio } from "./CustomizedSurvey/Components/DescribeByAudio";
+export { DescribeByToAudio } from "./CustomizedSurvey/Components/DescribeByToAudio";
 export { DescribeImage } from "./CustomizedSurvey/Components/DescribeImage";
-export { TextWithButton } from "./CustomizedSurvey/Components/TextWithButton";
+export { DescribeImageOnlyAudio } from "./CustomizedSurvey/Components/DescribeImageAudio";
+export { DescribeText } from "./CustomizedSurvey/Components/DescribeText";
+export { DescribeTextByAudio } from "./CustomizedSurvey/Components/DescribeTextByAudio";
+export { DescribeVideo } from "./CustomizedSurvey/Components/DescribeVideo";
+export { DescribeVideoByAudio } from "./CustomizedSurvey/Components/DescribeVideoByAudio";
+export { RandomId } from "./CustomizedSurvey/Components/RandomId";
+export { ServerRandomId } from "./CustomizedSurvey/Components/ServerRandomId";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -45,10 +54,14 @@ widgets.bootstrapslider(Survey);
 function onValueChanged() {}
 
 export function SurveyPage() {
-  const additionalCheckJSON = combineInput(inputObj);
-  const model = new Survey.Model(additionalCheckJSON);
+  const [additionalCheckJSON, setAdditionalCheckJSON] = useState([]);
+  const [model, setModel] = useState([]);
   const [startDate] = useState(new Date());
   const [ip, setIP] = useState(null);
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [data, setData] = useState(false);
 
   const saveData = (data) => {
     fetch("/upload", {
@@ -59,38 +72,121 @@ export function SurveyPage() {
       },
       body: JSON.stringify(data),
     });
-  }
+  };
 
   const onComplete = (result) => {
     saveData({
       data: result.data,
-        ip,
-        timestamp: {
-          startDate,
-          endDate: new Date(),
-        },
-    })
+      randomOrder: additionalCheckJSON.order,
+      timestamp: {
+        startDate,
+        endDate: new Date(),
+      },
+      surveyId: result.data.surveyId,
+    });
   };
 
-  useEffect(() => {
-    fetch("https://api.ipify.org?format=json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        setIP(res.ip);
-      })
-      .catch((err) => console.log(err));
+  useEffect(async () => {
+    const init = async () => {
+      try {
+        // read from input file in public
+        let input = await fetch("/input", {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        input = await input.json();
+        let result = combineInput(input);
+        setAdditionalCheckJSON(result);
+        result = new Survey.Model(result);
+        setModel(result);
+        let response = await fetch("/ipvalidate");
+        response = await response.json();
+        setLoader(false);
+        setData(response.data);
+        setSuccess(true);
+      } catch (error) {
+        setSuccess(false);
+        setLoader(false);
+        setError(error);
+      }
+    };
+    init();
   }, []);
+
+  const renderer = () => {
+    if (loader) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loader type="Oval" color="#EE1C25" height={39} width={80} />
+        </div>
+      );
+    } else if (error) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>{error.message}</h2>
+        </div>
+      );
+    } else if (data) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>Survey already submitted</h2>
+        </div>
+      );
+    } else if (!success) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>Some Error Occurred</h2>
+        </div>
+      );
+    } else {
+      return (
+        <Survey.Survey
+          model={model}
+          onComplete={onComplete}
+          onValueChanged={onValueChanged}
+        />
+      );
+    }
+  };
 
   return (
     <div className="container">
       <h2>USING: SurveyJS Library - a sample survey below</h2>
-      <Survey.Survey
-        model={model}
-        onComplete={onComplete}
-        onValueChanged={onValueChanged}
-      />
+      {renderer()}
     </div>
   );
 }
