@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.post("/upload", Survey.uploadSurvey);
 app.get("/response", Survey.getSurvey);
-
+app.get("/getVideoData", Survey.getVideoData);
 app.disable("etag");
 // frontend deployment
 app.get("/", (req, res) => {

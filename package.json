@@ -21,7 +21,8 @@
     "survey-pdf": "latest",
     "survey-react": "latest",
     "surveyjs-widgets": "latest",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.16.9",
+    "ziggeo": "^0.1.26"
   },
   "scripts": {
     "start": "node server.js",
