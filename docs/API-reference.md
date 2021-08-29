@@ -86,7 +86,13 @@ You can read more about that inside `docs/6-digit-random-number.md` file
 ### Ziggeo components
 here is the guide for the ziggeo components
 
-| type 	| name 	| title 	| url 	| API_KEY 	| transacription 	| message 	|
-|------	|------	|-------	|-----	|---------	|----------------	|---------	|
-|      	|      	|       	|     	|         	|                	|         	|
-|      	|      	|       	|     	|         	|                	|         	|
+| type                         	| name 	| title 	| url 	| API_KEY 	| transacription 	| message 	|
+|------------------------------	|------	|-------	|-----	|---------	|----------------	|---------	|
+| ziggeodescribebyaudio        	|  yes 	|   yes   |  yes	|   yes    	|     yes        	|         	|
+| ziggeodescribeaudiowithaudio 	|  yes 	|   yes  	|  yes	|   yes    	|     yes        	|         	|
+| ziggeodescribeimage          	|  yes 	|   yes  	|  yes 	|   yes    	|     yes        	|         	|
+| ziggeodescribeimageonlyaudio 	|  yes  |   yes  	|  yes 	|   yes    	|     yes        	|         	|
+| ziggeodescribetext           	|  yes 	|   yes  	|     	|   yes   	|     yes        	|    yes   	|
+| ziggeodescribetextwithaudio  	|  yes 	|   yes  	|     	|   yes    	|     yes        	|    yes   	|
+| ziggeodescribevideo          	|  yes 	|   yes  	|  yes 	|   yes    	|     yes        	|         	|
+| ziggeodescribevideowithaudio 	|  yes 	|   yes  	|  yes 	|   yes    	|     yes        	|         	|
