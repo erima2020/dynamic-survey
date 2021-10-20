@@ -18,8 +18,6 @@ import "jquery-bar-rating";
 
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
-import { json } from "./inputJSON.js";
-import * as inputObj from "./input.json";
 import { combineInput } from "./CustomizedSurvey/Utils/combineInput.js";
 
 window["$"] = window["jQuery"] = $;
@@ -32,8 +30,8 @@ export { DescribeText } from "./CustomizedSurvey/Components/DescribeText";
 export { DescribeTextByAudio } from "./CustomizedSurvey/Components/DescribeTextByAudio";
 export { DescribeVideo } from "./CustomizedSurvey/Components/DescribeVideo";
 export { DescribeVideoByAudio } from "./CustomizedSurvey/Components/DescribeVideoByAudio";
-export { RandomId } from "./CustomizedSurvey/Components/RandomId";
-export { ServerRandomId } from "./CustomizedSurvey/Components/ServerRandomId";
+// export { RandomId } from "./CustomizedSurvey/Components/RandomId";
+// export { ServerRandomId } from "./CustomizedSurvey/Components/ServerRandomId";
 
 Survey.StylesManager.applyTheme("default");
 
@@ -57,14 +55,15 @@ export function SurveyPage() {
   const [additionalCheckJSON, setAdditionalCheckJSON] = useState([]);
   const [model, setModel] = useState([]);
   const [startDate] = useState(new Date());
-  const [ip, setIP] = useState(null);
   const [loader, setLoader] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [data, setData] = useState(false);
+  const [identifier, setIdentifier] = useState(0)
+  const [hasCompleted, setHasCompleted] = useState(false)
 
   const saveData = (data) => {
-    fetch("/upload", {
+    fetch("http://localhost:3001/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -72,11 +71,15 @@ export function SurveyPage() {
       },
       body: JSON.stringify(data),
     });
+    setHasCompleted(true)
   };
 
   const onComplete = (result) => {
     saveData({
-      data: result.data,
+      data: {
+        ...result.data,
+        code: identifier || result.data.code
+      },
       randomOrder: additionalCheckJSON.order,
       timestamp: {
         startDate,
@@ -89,19 +92,21 @@ export function SurveyPage() {
   useEffect(async () => {
     const init = async () => {
       try {
+        setHasCompleted(false)
         // read from input file in public
-        let input = await fetch("/input", {
+        let input = await fetch("http://localhost:3001/input", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
         });
         input = await input.json();
-        let result = combineInput(input);
+        let result = combineInput(input.result);
         setAdditionalCheckJSON(result);
+        setIdentifier(input.identifier)
         result = new Survey.Model(result);
         setModel(result);
-        let response = await fetch("/ipvalidate");
+        let response = await fetch("http://localhost:3001/ipvalidate");
         response = await response.json();
         setLoader(false);
         setData(response.data);
@@ -186,6 +191,14 @@ export function SurveyPage() {
   return (
     <div className="container">
       <h2>USING: SurveyJS Library - a sample survey below</h2>
+      {hasCompleted && (
+        <h3>
+          {process.env.REACT_APP_SERVER_CODE_LABEL
+            ? process.env.REACT_APP_SERVER_CODE_LABEL
+            : " Your survey code is:"}
+          {" "}{identifier}
+        </h3>
+      )}
       {renderer()}
     </div>
   );

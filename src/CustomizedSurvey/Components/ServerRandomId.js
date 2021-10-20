@@ -28,7 +28,7 @@ export class ServerRandomId extends Survey.SurveyElementBase {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   async componentDidMount() {
-    let response = await fetch("/unique-id", {
+    let response = await fetch("http://localhost:3001/unique-id", {
       method: "GET",
       headers: {
         Accept: "application/json",
