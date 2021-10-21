@@ -95,9 +95,10 @@ const getRandomUniqueId = async (req, res) => {
       },
     });
     await survey.save();
-    res.status(200).send({
-      data: uniqueNumber,
-    });
+    return uniqueNumber
+    // res.status(200).send({
+    //   data: uniqueNumber,
+    // });
   } catch (error) {
     return res.status(500).send({
       message: "something went wrong",
@@ -115,7 +116,11 @@ const getInput = async (req, res) => {
       res.json(data);
       return;
     }
-    res.json(result);
+    const identifier = await getRandomUniqueId(req, res)
+    res.json({
+      result,
+      identifier
+    });
   } catch (error) {
     res.json(data);
   }
