@@ -111,3 +111,5 @@ this way you can use this repo in your existing app
 - REACT_APP_ZIGGEO_API_KEY - A secret app key for the ziggeo
 - DATABASE_URL - A MongoDB url where you want to store the information
 - IP_VALIDATION - [Optional] If you want to block the ip to only one survey
+- REACT_APP_SERVER_CODE_LABEL - [Optional] If you want to control the label for the survey code
+[Default] The survey code is: 
