@@ -63,7 +63,7 @@ export function SurveyPage() {
   const [hasCompleted, setHasCompleted] = useState(false)
 
   const saveData = (data) => {
-    fetch("http://localhost:3001/upload", {
+    fetch("/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -94,7 +94,7 @@ export function SurveyPage() {
       try {
         setHasCompleted(false)
         // read from input file in public
-        let input = await fetch("http://localhost:3001/input", {
+        let input = await fetch("/input", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -106,7 +106,7 @@ export function SurveyPage() {
         setIdentifier(input.identifier)
         result = new Survey.Model(result);
         setModel(result);
-        let response = await fetch("http://localhost:3001/ipvalidate");
+        let response = await fetch("/ipvalidate");
         response = await response.json();
         setLoader(false);
         setData(response.data);
