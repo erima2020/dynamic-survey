@@ -1,9 +1,9 @@
 const RequestIp = require("@supercharge/request-ip");
+const Ziggeo = require ('ziggeo')
 const Survey = require("./Survey");
 const Input = require("./Input");
 const data = require("./../data/input.json");
 require("dotenv").config();
-const Ziggeo = require ('ziggeo')
 var ZiggeoSdk = new Ziggeo(process.env.ZIGGEO_APP_TOKEN, process.env.PRIVATE_KEY);
 const uploadSurvey = async (req, res) => {
   try {
@@ -43,30 +43,21 @@ const getSurvey = async (req, res) => {
   }
 };
 
-const getIpVaildation = async (req, res) => {
+const getIpValidation = async (req, res) => {
   try {
     const ip = RequestIp.getClientIp(req);
     if (process.env.IP_VALIDATION !== "true") {
-      res.status(200).send({
-        data: false,
-      });
+      return false
     } else {
-      const result = await Survey.find({ ip: ip }).lean();
-      if (result.length > 0) {
-        res.status(200).send({
-          data: true,
-        });
+      const result = await Survey.findOne({ ip: ip }).lean();
+      if (result && Object.keys(result.data).length > 1) {
+        return true
       } else {
-        res.status(200).send({
-          data: false,
-        });
+        return false
       }
     }
   } catch (error) {
-    return res.status(500).send({
-      message: "something went wrong",
-      stack: error.message,
-    });
+    throw error
   }
 };
 
@@ -88,17 +79,18 @@ const getRandomUniqueId = async (req, res) => {
   try {
     const uniqueNumber = await getNumber();
     const ip = RequestIp.getClientIp(req);
-    const survey = new Survey({
+   await Survey.findOneAndUpdate({ ip }, {
       ip,
       data: {
         code: uniqueNumber,
       },
-    });
-    await survey.save();
+    }, {
+      new: true,
+      upsert: true
+    })
+   
     return uniqueNumber
-    // res.status(200).send({
-    //   data: uniqueNumber,
-    // });
+    
   } catch (error) {
     return res.status(500).send({
       message: "something went wrong",
@@ -109,17 +101,25 @@ const getRandomUniqueId = async (req, res) => {
 
 const getInput = async (req, res) => {
   try {
-    const result = await Input.findOne({}, {}, { sort: { updatedAt: 1 } });
+    const ipValidate = await getIpValidation(req)
+    if(ipValidate){
+      res.json({
+        submission: ipValidate
+      }).end()
+      return;
+    }
+    let result = await Input.findOne({}, {}, { sort: { updatedAt: 1 } });
     if (!result) {
       const input = new Input(data);
       await input.save();
       res.json(data);
-      return;
+      result = data
     }
     const identifier = await getRandomUniqueId(req, res)
     res.json({
       result,
-      identifier
+      identifier,
+      submission: ipValidate
     });
   } catch (error) {
     res.json(data);
@@ -175,7 +175,6 @@ const getVideoData = async (req, res) => {
 module.exports = {
   getSurvey,
   uploadSurvey,
-  getIpVaildation,
   getRandomUniqueId,
   getInput,
   getVideoData
