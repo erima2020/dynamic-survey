@@ -92,7 +92,7 @@ export function SurveyPage() {
   useEffect(async () => {
     const init = async () => {
       try {
-        setHasCompleted(false)
+        setHasCompleted(false);
         // read from input file in public
         let input = await fetch("/input", {
           headers: {
@@ -101,16 +101,18 @@ export function SurveyPage() {
           },
         });
         input = await input.json();
-        let result = combineInput(input.result);
-        setAdditionalCheckJSON(result);
-        setIdentifier(input.identifier)
-        result = new Survey.Model(result);
-        setModel(result);
-        let response = await fetch("/ipvalidate");
-        response = await response.json();
-        setLoader(false);
-        setData(response.data);
-        setSuccess(true);
+        if (input.submission) {
+          setLoader(false);
+          setData(input.submission);
+        } else if(input.result) {
+          let result = combineInput(input.result);
+          setAdditionalCheckJSON(result);
+          setIdentifier(input.identifier);
+          result = new Survey.Model(result);
+          setModel(result);
+          setLoader(false);
+          setSuccess(true);
+        }
       } catch (error) {
         setSuccess(false);
         setLoader(false);
