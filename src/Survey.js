@@ -192,7 +192,7 @@ export function SurveyPage() {
 
   return (
     <div className="container">
-      <h2>USING: SurveyJS Library - a sample survey below</h2>
+      <h2>Help us test our platform</h2>
       {hasCompleted && (
         <h3>
           {process.env.REACT_APP_SERVER_CODE_LABEL
